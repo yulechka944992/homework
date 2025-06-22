@@ -18,3 +18,11 @@ def mask_account_card( card_number: str) -> str:
     else:
         return card_number. replace(card_number[-16:], get_mask_card_number(card_number[-16:]))
 
+
+
+def get_date(date: str) -> str | None:
+    """Функция преобразования даты"""
+    return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
+
+
+print(get_date("2024-03-11T02:26:18.671407"))
