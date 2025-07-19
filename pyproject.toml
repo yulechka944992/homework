@@ -7,13 +7,15 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-]
 
+[project.packages]
+include = ["src"]
 
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.poetry.dependencies]
+python = "^3.13"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = "^7.2.0"
@@ -21,9 +23,18 @@ black = "^25.1.0"
 mypy = "^1.16.0"
 isort = "^6.0.1"
 
+[tool.poetry]
+name = "pythonproject"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+packages = [
+    {include = "src", from = "."}
+]
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.4.1"
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 119
