@@ -4,6 +4,6 @@ def get_mask_card_number(number_cart: str) -> str:
 
 
 def get_mask_account(number_personal_account: str) -> str:
-    """Функция принимает на вход номер счета  и возвращает его маску."""
+    """Функция принимает на вход номер счета и возвращает его маску."""
     number_mask = number_personal_account[-4:]
     return f"**{number_mask}"
