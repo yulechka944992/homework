@@ -1,7 +1,7 @@
-from typing import Any, Generator
+from typing import Any, Generator, Iterator
 
 
-def filter_by_currency(transactions_dict: list, currency: str):
+def filter_by_currency(transactions_dict: list[dict], currency: str) -> Iterator[dict]:
     """
     Функция принимает список словарей на вход и возвращает итератор,
     который поочередно выдает транзакции, где валюта операции соответствует currency.
@@ -20,9 +20,9 @@ def transaction_descriptions(transactions_dict: list) -> Generator[Any, Any, Non
 
 
 def card_number_generator(start=1, stop=9999999999999999):
+    """Генератор выдает номера банковских карт в формате XXXX XXXX XXXX XXXX"""
     current = start
     while current <= stop:
         num_str = f"{current:016d}"
         yield ' '.join([num_str[i:i + 4] for i in range(0, 16, 4)])
         current += 1
-
