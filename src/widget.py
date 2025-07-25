@@ -14,7 +14,6 @@ def mask_account_card(card_number: str) -> str:
         if card_number_item.isalpha():
             card_number_alpha += card_number_item
 
-
     if card_number_alpha == "Счет":
         return f"{card_number_alpha} {get_mask_account(card_number_digit)}"
     else:
