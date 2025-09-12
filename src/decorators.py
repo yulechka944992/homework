@@ -2,6 +2,8 @@ from functools import wraps
 
 
 def log(filename=None):
+    """ Декоратор для логирования работы функций - записи в консоль или файл информации о вызовах функций,
+     их результатах и ошибках."""
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
