@@ -1,7 +1,7 @@
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(card_number: str) -> str:
+def mask_account_card(card_number: str ) -> str:
     """Функция, которая маскирует информацию о картах и счетах"""
     if not card_number or len(card_number) < 16:
         return "Номер карты короткий или пустой"
