@@ -1,6 +1,7 @@
 import json
 import os
 
+
 def load_json(file_path: str) -> list[dict]:
     """
     Функция принимает на вход путь до JSON-файла
@@ -10,7 +11,7 @@ def load_json(file_path: str) -> list[dict]:
         return []
 
     try:
-        with open(file_path, 'r', encoding='utf-8') as json_file:
+        with open(file_path, "r", encoding="utf-8") as json_file:
             data = json.load(json_file)
 
             if not isinstance(data, list):

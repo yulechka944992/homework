@@ -1,14 +1,15 @@
 import os
-from dotenv import load_dotenv
 
 import requests
+from dotenv import load_dotenv
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
 
 def amount_rub(transaction: dict) -> float:
-    """Функция принимает на вход транзакцию и возвращает сумму транзакции в рублях"""
+    """Функция принимает на вход транзакцию и возвращает сумму транзакции в рублях,
+    если транзакция была в USD или EUR, происходит конвертация с помощью API"""
 
     if transaction["operationAmount"]["currency"]["code"] != "RUB":
         currency_code = transaction["operationAmount"]["currency"]["code"]
