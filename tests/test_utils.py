@@ -1,32 +1,35 @@
-from unittest.mock import Mock, patch
+import pytest
+from unittest.mock import patch,mock_open
+import json
 
-
-from utils import load_json
+from src.utils import load_json
 
 
 def test_load_json():
-    mock_exists = Mock(return_value = True)
+    """Тест загрузки JSON-файла"""
+    test_data = [{'id': 1}, {'id': 2}, {'id': 3}]
+    with patch("os.path.exists", return_value=True):
+        with patch("builtins.open", mock_open(read_data=json.dumps(test_data))):
+            result = load_json('data.json')
+            assert result == test_data
 
-    mock_json = Mock()
-    mock_json.load.return_value = [{"id": 1}]
+def test_json_not_exist():
 
-    mock_file = Mock()
-    mock_open_func = Mock(return_value=mock_file)
+    with patch("os.path.exists", return_value=False):
+        result = load_json('missing.json')
+        assert result == []
 
-    with patch('os.path.exists', mock_exists):
-        with patch('builtins.open', mock_open_func):
-            with patch('json.load', mock_json.load):
-                result = load_json("test.json")
+def test_file_exists_but_not_list():
 
-                assert result == [{"id": 1}]
-                mock_exists.assert_called_once_with("test.json")
-                mock_open_func.assert_called_once_with("test.json", "r", encoding="utf-8")
+    test_data = {'id': 1}
+    with patch("os.path.exists", return_value=True):
+        with patch("builtins.open", mock_open(read_data=json.dumps(test_data))):
+            result = load_json('not_a_list.json')
+            assert result == []
 
-                print("✅ Тест пройден!")
-                return result
+def test_file_exists_but_invalid_json():
 
-
-if __name__ == "__main__":
-    test_load_json()
-    print("\n✅ Все тесты пройдены!")
-
+    with patch("os.path.exists", return_value=True):
+        with patch("builtins.open", mock_open(read_data='invalid.json')):
+            result = load_json('invalid.json')
+            assert result == []
