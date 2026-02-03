@@ -31,6 +31,7 @@ excel_file_path = os.path.join(os.getcwd(), "data", "transactions_excel.xlsx")
 
 
 def read_excel(excel_file_path: str) -> list[Any] | None:
+    """Функция для преобразования Excel файла в список словарей с транзакциями"""
     try:
         excel_reader = pd.read_excel(excel_file_path)
         excel_dict = excel_reader.to_dict(orient='records')
