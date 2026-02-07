@@ -4,9 +4,11 @@ import re
 def process_bank_search(process_bank_list: list[dict[str, str]], search: str) -> list[dict[str, str]]:
     """Функция принимает список словарей с данными о банковских операциях и строку поиска,
         а возвращает список словарей, у которых в любом значении есть данная строка."""
+    new_list_dict = []
+
     try:
         pattern = re.compile(search, re.IGNORECASE)
-        new_list_dict = []
+
         for item in process_bank_list:
             if any(pattern.search(str(value)) for value in item.values()):
                 new_list_dict.append(item)
