@@ -1,7 +1,7 @@
 import re
 
 
-def process_bank_search(process_bank_list:list[dict[str, str]], search:str)->list[dict[str, str]]:
+def process_bank_search(process_bank_list: list[dict[str, str]], search: str) -> list[dict[str, str]]:
     """Функция принимает список словарей с данными о банковских операциях и строку поиска,
         а возвращает список словарей, у которых в любом значении есть данная строка."""
     try:
