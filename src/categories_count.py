@@ -14,8 +14,7 @@ def process_bank_operations(list_operations: list[dict], categories: list) -> di
         counter = Counter(categories_count)
         return dict(counter)
 
-    except Exception as e:
-        print(f"Внимание! Ошибка {e}!")
+    except Exception:
         return {}
 
 
