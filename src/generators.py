@@ -8,7 +8,12 @@ def filter_by_currency(transactions_dict: list[dict], currency: str) -> Iterator
     """
 
     for transaction in transactions_dict:
-        if transaction["operationAmount"]["currency"]["code"] == currency:
+        if 'operationAmount' in transaction:
+            curr = transaction['operationAmount']['currency']['code']
+        else:
+            curr = transaction.get('currency_code')
+
+        if curr == currency:
             yield transaction
 
 
